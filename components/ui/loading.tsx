@@ -1,6 +1,6 @@
-&apos;use client&apos;;
+'use client';
 
-import { motion } from &apos;framer-motion&apos;;
+import { motion } from 'framer-motion';
 
 export default function Loading() {
   return (

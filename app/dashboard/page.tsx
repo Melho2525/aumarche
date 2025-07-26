@@ -1,8 +1,8 @@
-&apos;use client&apos;;
+'use client';
 
-import { useState, useEffect } from &apos;react&apos;;
-import { motion } from &apos;framer-motion&apos;;
-import { useRouter } from &apos;next/navigation&apos;;
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { 
   Users, 
   Gift, 
@@ -13,12 +13,12 @@ import {
   Star,
   Calendar,
   DollarSign
-} from &apos;lucide-react&apos;;
-import Header from '@/components/layout/header&apos;;
-import Footer from '@/components/layout/footer&apos;;
-import { supabase } from '@/lib/supabase&apos;;
-import { getCurrentUser } from '@/lib/auth&apos;;
-import { generateReferralUrl } from '@/lib/referral-utils&apos;;
+} from 'lucide-react';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import { supabase } from '@/lib/supabase';
+import { getCurrentUser } from '@/lib/auth';
+import { generateReferralUrl } from '@/lib/referral-utils';
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
@@ -43,15 +43,15 @@ export default function Dashboard() {
     try {
       const currentUser = await getCurrentUser();
       if (!currentUser) {
-        router.push('/login&apos;);
+        router.push('/login');
         return;
       }
 
       // Récupérer les données utilisateur
       const { data: userData } = await supabase
-        .from(&apos;users&apos;)
+        .from('users')
         .select('*')
-        .eq(&apos;id&apos;, currentUser.id)
+        .eq('id', currentUser.id)
         .single();
 
       if (userData) {
@@ -61,20 +61,20 @@ export default function Dashboard() {
 
       // Récupérer les statistiques
       const { data: parrainages } = await supabase
-        .from(&apos;parrainages&apos;)
+        .from('parrainages')
         .select('*, filleul:users(*)')
-        .eq(&apos;parrain_id&apos;, currentUser.id);
+        .eq('parrain_id', currentUser.id);
 
       const { data: commandes } = await supabase
-        .from(&apos;commandes&apos;)
-        .select(&apos;montant&apos;)
-        .eq(&apos;user_id&apos;, currentUser.id);
+        .from('commandes')
+        .select('montant')
+        .eq('user_id', currentUser.id);
 
       const { data: recompensesData } = await supabase
-        .from(&apos;recompenses&apos;)
+        .from('recompenses')
         .select('*')
-        .eq(&apos;user_id&apos;, currentUser.id)
-        .order(&apos;date&apos;, { ascending: false });
+        .eq('user_id', currentUser.id)
+        .order('date', { ascending: false });
 
       setFilleuls(parrainages || []);
       setRecompenses(recompensesData || []);
@@ -86,7 +86,7 @@ export default function Dashboard() {
       });
 
     } catch (error) {
-      console.error(&apos;Erreur lors du chargement:', error);
+      console.error('Erreur lors du chargement:', error);
     } finally {
       setLoading(false);
     }
@@ -308,7 +308,7 @@ export default function Dashboard() {
               <div className="text-center py-8">
                 <Users className="mx-auto text-neutral-400 mb-4" size={48} />
                 <p className="text-neutral-600">
-                  Vous n&apos;avez pas encore de filleuls. Partagez votre lien pour commencer !
+                  Vous n'avez pas encore de filleuls. Partagez votre lien pour commencer !
                 </p>
               </div>
             )}

@@ -1,13 +1,13 @@
-&apos;use client&apos;;
+'use client';
 
-import { useState } from &apos;react&apos;;
-import { motion } from &apos;framer-motion&apos;;
-import Link from &apos;next/link&apos;;
-import { useRouter } from &apos;next/navigation&apos;;
-import { Mail, Phone, Eye, EyeOff, ArrowLeft } from &apos;lucide-react&apos;;
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Mail, Phone, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 
 export default function Login() {
-  const [loginMethod, setLoginMethod] = useState<&apos;email&apos; | &apos;phone&apos;>(&apos;email&apos;);
+  const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -22,14 +22,14 @@ export default function Login() {
     setError('');
 
     try {
-      const res = await fetch('/api/auth/otp&apos;, {
-        method: &apos;POST&apos;,
-        body: JSON.stringify({ action: &apos;signInEmail&apos;, email, password }),
-        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }
+      const res = await fetch('/api/auth/otp', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'signInEmail', email, password }),
+        headers: { 'Content-Type': 'application/json' }
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || &apos;Erreur connexion&apos;);
-      router.push('/dashboard&apos;);
+      if (!res.ok) throw new Error(json.error || 'Erreur connexion');
+      router.push('/dashboard');
     } catch (err: any) {
       setError(err.message);
     }
@@ -42,13 +42,13 @@ export default function Login() {
     setError('');
 
     try {
-      const res = await fetch('/api/auth/otp&apos;, {
-        method: &apos;POST&apos;,
-        body: JSON.stringify({ action: &apos;send&apos;, phone }),
-        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }
+      const res = await fetch('/api/auth/otp', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'send', phone }),
+        headers: { 'Content-Type': 'application/json' }
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || &apos;Erreur envoi OTP&apos;);
+      if (!res.ok) throw new Error(json.error || 'Erreur envoi OTP');
       // Rediriger vers page vérification OTP avec sessionId
       router.push(`/verify-otp?sessionId=${json.sessionId}&phone=${encodeURIComponent(phone)}`);
     } catch (err: any) {
@@ -72,7 +72,7 @@ export default function Login() {
             className="inline-flex items-center space-x-2 text-neutral-600 hover:text-primary mb-6"
           >
             <ArrowLeft size={20} />
-            <span>Retour à l&apos;accueil</span>
+            <span>Retour à l'accueil</span>
           </Link>
 
           <h1 className="text-3xl font-heading font-bold text-neutral-800 mb-2">
@@ -87,22 +87,22 @@ export default function Login() {
         <div className="card-shadow p-8 mb-6">
           <div className="flex rounded-lg bg-neutral-100 p-1 mb-6">
             <button
-              onClick={() => setLoginMethod(&apos;email&apos;)}
+              onClick={() => setLoginMethod('email')}
               className={`flex-1 flex items-center justify-center space-x-2 py-2 px-4 rounded-md transition-all ${
-                loginMethod === &apos;email&apos;
-                  ? &apos;bg-white shadow-sm text-primary&apos;
-                  : &apos;text-neutral-600'
+                loginMethod === 'email'
+                  ? 'bg-white shadow-sm text-primary'
+                  : 'text-neutral-600'
               }`}
             >
               <Mail size={18} />
               <span>Email</span>
             </button>
             <button
-              onClick={() => setLoginMethod(&apos;phone&apos;)}
+              onClick={() => setLoginMethod('phone')}
               className={`flex-1 flex items-center justify-center space-x-2 py-2 px-4 rounded-md transition-all ${
-                loginMethod === &apos;phone&apos;
-                  ? &apos;bg-white shadow-sm text-primary&apos;
-                  : &apos;text-neutral-600'
+                loginMethod === 'phone'
+                  ? 'bg-white shadow-sm text-primary'
+                  : 'text-neutral-600'
               }`}
             >
               <Phone size={18} />
@@ -121,7 +121,7 @@ export default function Login() {
           )}
 
           {/* Formulaire Email */}
-          {loginMethod === &apos;email&apos; && (
+          {loginMethod === 'email' && (
             <form onSubmit={handleEmailLogin} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-2">
@@ -143,7 +143,7 @@ export default function Login() {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? &apos;text&apos; : &apos;password&apos;}
+                    type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent pr-12"
@@ -165,13 +165,13 @@ export default function Login() {
                 disabled={loading}
                 className="w-full btn-primary disabled:opacity-50"
               >
-                {loading ? &apos;Connexion...' : &apos;Se connecter&apos;}
+                {loading ? 'Connexion...' : 'Se connecter'}
               </button>
             </form>
           )}
 
           {/* Formulaire Téléphone */}
-          {loginMethod === &apos;phone&apos; && (
+          {loginMethod === 'phone' && (
             <form onSubmit={handlePhoneLogin} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-2">
@@ -192,7 +192,7 @@ export default function Login() {
                 disabled={loading}
                 className="w-full btn-primary disabled:opacity-50"
               >
-                {loading ? &apos;Envoi du code...' : &apos;Recevoir le code SMS&apos;}
+                {loading ? 'Envoi du code...' : 'Recevoir le code SMS'}
               </button>
             </form>
           )}

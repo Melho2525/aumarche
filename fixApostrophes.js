@@ -10,11 +10,11 @@ function processFile(filePath) {
   // Remplacer apostrophes dans texte JSX (entre balises <>)
   // C'est une heuristique simple : remplacer ' qui sont dans les contenus textuels (hors code)
   // Pour ça, on remplace ' uniquement si entouré de lettres ou espaces (approximation)
-  // Exemple : c'est -> c&apos;est
+  // Exemple : c'est -> c'est
   // Attention : cette regex peut produire des faux positifs, donc vérifie les changements
 
-  content = content.replace(/(['’])(?=[a-zà-ÿ])/gi, '&apos;'); // apostrophe avant une lettre (minuscule ou accentuée)
-  content = content.replace(/(?<=[a-zà-ÿ])(['’])/gi, '&apos;'); // apostrophe après une lettre
+  content = content.replace(/(['’])(?=[a-zà-ÿ])/gi, '''); // apostrophe avant une lettre (minuscule ou accentuée)
+  content = content.replace(/(?<=[a-zà-ÿ])(['’])/gi, '''); // apostrophe après une lettre
 
   if (content !== originalContent) {
     fs.writeFileSync(filePath, content, 'utf8');

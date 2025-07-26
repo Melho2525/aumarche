@@ -1,10 +1,10 @@
-&apos;use client&apos;;
+'use client';
 
-import { useState, useEffect, useRef } from &apos;react&apos;;
-import { useRouter, useSearchParams } from &apos;next/navigation&apos;;
-import { supabase } from '@/lib/supabase&apos;;
-import { motion } from &apos;framer-motion&apos;;
-import Link from &apos;next/link&apos;;
+import { useState, useEffect, useRef } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const RESEND_COOLDOWN = 60; // secondes avant de pouvoir renvoyer
 
@@ -14,7 +14,7 @@ export default function OTPLogin() {
 
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
-  const [step, setStep] = useState<&apos;input-phone&apos; | &apos;input-otp&apos;>(&apos;input-phone&apos;);
+  const [step, setStep] = useState<'input-phone' | 'input-otp'>('input-phone');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [parrainInfo, setParrainInfo] = useState<{ nom?: string; avatar_url?: string } | null>(null);
@@ -24,8 +24,8 @@ export default function OTPLogin() {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Récupérer code parrainage dans l&apos;URL si présent
-    const refCode = searchParams.get(&apos;ref&apos;);
+    // Récupérer code parrainage dans l'URL si présent
+    const refCode = searchParams.get('ref');
     if (refCode) {
       setParrainCode(refCode);
       fetchParrainInfo(refCode);
@@ -38,19 +38,19 @@ export default function OTPLogin() {
   async function fetchParrainInfo(code: string) {
     try {
       const { data, error } = await supabase
-        .from(&apos;users&apos;)
-        .select(&apos;nom, avatar_url&apos;)
-        .eq(&apos;code_parrainage&apos;, code)
+        .from('users')
+        .select('nom, avatar_url')
+        .eq('code_parrainage', code)
         .single();
 
       if (error) {
-        console.warn(&apos;Erreur fetch parrain:', error.message);
+        console.warn('Erreur fetch parrain:', error.message);
         return;
       }
 
       setParrainInfo(data);
     } catch (e) {
-      console.error(&apos;Erreur fetch parrain&apos;, e);
+      console.error('Erreur fetch parrain', e);
     }
   }
 
@@ -76,15 +76,15 @@ export default function OTPLogin() {
     setError('');
 
     if (!phone.match(/^\+?\d{8,15}$/)) {
-      setError(&apos;Numéro de téléphone invalide.');
+      setError('Numéro de téléphone invalide.');
       setLoading(false);
       return;
     }
 
     try {
-      const response = await fetch('/api/send-otp&apos;, {
-        method: &apos;POST&apos;,
-        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; },
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone }),
       });
 
@@ -92,18 +92,18 @@ export default function OTPLogin() {
 
       if (!response.ok) {
         if (response.status === 429) {
-          setError(&apos;Quota d\&apos;envoi dépassé. Réessayez demain.');
+          setError('Quota d\'envoi dépassé. Réessayez demain.');
         } else {
-          setError(data.error || &apos;Erreur lors de l\&apos;envoi du code OTP.');
+          setError(data.error || 'Erreur lors de l\'envoi du code OTP.');
         }
         setLoading(false);
         return;
       }
 
-      setStep(&apos;input-otp&apos;);
+      setStep('input-otp');
       startCooldown();
     } catch {
-      setError(&apos;Erreur réseau. Veuillez réessayer.');
+      setError('Erreur réseau. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -116,9 +116,9 @@ export default function OTPLogin() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/send-otp&apos;, {
-        method: &apos;POST&apos;,
-        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; },
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone }),
       });
 
@@ -126,9 +126,9 @@ export default function OTPLogin() {
 
       if (!response.ok) {
         if (response.status === 429) {
-          setError(&apos;Quota d\&apos;envoi dépassé. Réessayez demain.');
+          setError('Quota d\'envoi dépassé. Réessayez demain.');
         } else {
-          setError(data.error || &apos;Erreur lors de l\&apos;envoi du code OTP.');
+          setError(data.error || 'Erreur lors de l\'envoi du code OTP.');
         }
         setLoading(false);
         return;
@@ -136,7 +136,7 @@ export default function OTPLogin() {
 
       startCooldown();
     } catch {
-      setError(&apos;Erreur réseau. Veuillez réessayer.');
+      setError('Erreur réseau. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -148,30 +148,30 @@ export default function OTPLogin() {
     setError('');
 
     if (otp.length !== 6) {
-      setError(&apos;Le code OTP doit contenir 6 chiffres.');
+      setError('Le code OTP doit contenir 6 chiffres.');
       setLoading(false);
       return;
     }
 
     try {
-      const response = await fetch('/api/verify-otp&apos;, {
-        method: &apos;POST&apos;,
-        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; },
+      const response = await fetch('/api/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone, code: otp }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || &apos;Code OTP invalide ou expiré.');
+        setError(data.error || 'Code OTP invalide ou expiré.');
         setLoading(false);
         return;
       }
 
       // Connexion réussie, redirection
-      router.push('/dashboard&apos;);
+      router.push('/dashboard');
     } catch {
-      setError(&apos;Erreur réseau. Veuillez réessayer.');
+      setError('Erreur réseau. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -187,7 +187,7 @@ export default function OTPLogin() {
       >
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-2 text-neutral-600 hover:text-primary mb-6">
-            ← Retour à l&apos;accueil
+            ← Retour à l'accueil
           </Link>
           <h1 className="text-3xl font-bold text-neutral-800 mb-2">
             Connexion par <span className="text-gradient">Téléphone & OTP</span>
@@ -209,13 +209,13 @@ export default function OTPLogin() {
               )}
               <div>
                 <p className="font-semibold text-primary">Parrain : {parrainInfo.nom}</p>
-                <p className="text-sm text-neutral-600">Vous bénéficiez d&apos;avantages exclusifs grâce à ce parrainage.</p>
+                <p className="text-sm text-neutral-600">Vous bénéficiez d'avantages exclusifs grâce à ce parrainage.</p>
               </div>
             </div>
           )}
         </div>
 
-        {step === &apos;input-phone&apos; && (
+        {step === 'input-phone' && (
           <form onSubmit={handleSendOTP} className="space-y-4">
             <label className="block text-sm font-medium text-neutral-700 mb-2">
               Numéro de téléphone
@@ -236,12 +236,12 @@ export default function OTPLogin() {
               disabled={loading}
               className="w-full btn-primary disabled:opacity-50"
             >
-              {loading ? &apos;Envoi du code...' : &apos;Recevoir le code SMS&apos;}
+              {loading ? 'Envoi du code...' : 'Recevoir le code SMS'}
             </button>
           </form>
         )}
 
-        {step === &apos;input-otp&apos; && (
+        {step === 'input-otp' && (
           <form onSubmit={handleVerifyOTP} className="space-y-4">
             <label className="block text-sm font-medium text-neutral-700 mb-2">
               Code OTP
@@ -263,7 +263,7 @@ export default function OTPLogin() {
               disabled={loading}
               className="w-full btn-primary disabled:opacity-50"
             >
-              {loading ? &apos;Vérification...' : &apos;Valider le code&apos;}
+              {loading ? 'Vérification...' : 'Valider le code'}
             </button>
 
             <button
@@ -272,7 +272,7 @@ export default function OTPLogin() {
               disabled={loading || !canResend}
               className={`w-full mt-2 btn-secondary disabled:opacity-50`}
             >
-              {canResend ? &apos;Renvoyer le code&apos; : `Renvoyer dans ${countdown}s`}
+              {canResend ? 'Renvoyer le code' : `Renvoyer dans ${countdown}s`}
             </button>
           </form>
         )}

@@ -1,6 +1,6 @@
-import * as React from &apos;react&apos;;
+import * as React from 'react';
 
-import { cn } from '@/lib/utils&apos;;
+import { cn } from '@/lib/utils';
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -9,13 +9,13 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      &apos;rounded-lg border bg-card text-card-foreground shadow-sm&apos;,
+      'rounded-lg border bg-card text-card-foreground shadow-sm',
       className
     )}
     {...props}
   />
 ));
-Card.displayName = &apos;Card&apos;;
+Card.displayName = 'Card';
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -23,11 +23,11 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(&apos;flex flex-col space-y-1.5 p-6', className)}
+    className={cn('flex flex-col space-y-1.5 p-6', className)}
     {...props}
   />
 ));
-CardHeader.displayName = &apos;CardHeader&apos;;
+CardHeader.displayName = 'CardHeader';
 
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -36,13 +36,13 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      &apos;text-2xl font-semibold leading-none tracking-tight&apos;,
+      'text-2xl font-semibold leading-none tracking-tight',
       className
     )}
     {...props}
   />
 ));
-CardTitle.displayName = &apos;CardTitle&apos;;
+CardTitle.displayName = 'CardTitle';
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -50,19 +50,19 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn(&apos;text-sm text-muted-foreground&apos;, className)}
+    className={cn('text-sm text-muted-foreground', className)}
     {...props}
   />
 ));
-CardDescription.displayName = &apos;CardDescription&apos;;
+CardDescription.displayName = 'CardDescription';
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn(&apos;p-6 pt-0', className)} {...props} />
+  <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
 ));
-CardContent.displayName = &apos;CardContent&apos;;
+CardContent.displayName = 'CardContent';
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
@@ -70,11 +70,11 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(&apos;flex items-center p-6 pt-0', className)}
+    className={cn('flex items-center p-6 pt-0', className)}
     {...props}
   />
 ));
-CardFooter.displayName = &apos;CardFooter&apos;;
+CardFooter.displayName = 'CardFooter';
 
 export {
   Card,

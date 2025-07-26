@@ -1,8 +1,8 @@
-&apos;use client&apos;;
+'use client';
 
-import { motion } from &apos;framer-motion&apos;;
-import Link from &apos;next/link&apos;;
-import { ShoppingCart, Users, Zap } from &apos;lucide-react&apos;;
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ShoppingCart, Users, Zap } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -50,7 +50,7 @@ export default function Hero() {
               className="text-xl text-neutral-600 leading-relaxed"
             >
               Découvrez la première plateforme de digitalisation des achats vivriers 
-              en Côte d&apos;Ivoire. Commandez vos produits frais et bénéficiez de notre 
+              en Côte d'Ivoire. Commandez vos produits frais et bénéficiez de notre 
               programme de parrainage exclusif.
             </motion.p>
 

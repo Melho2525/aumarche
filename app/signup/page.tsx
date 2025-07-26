@@ -1,11 +1,11 @@
-&apos;use client&apos;;
+'use client';
 
-import { useState, useEffect } from &apos;react&apos;;
-import { motion } from &apos;framer-motion&apos;;
-import Link from &apos;next/link&apos;;
-import { useRouter, useSearchParams } from &apos;next/navigation&apos;;
-import { ArrowLeft, Eye, EyeOff, User, Mail, Phone, Gift } from &apos;lucide-react&apos;;
-import { signUpWithEmail, checkIfAlreadyReferred } from '@/lib/auth&apos;;
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ArrowLeft, Eye, EyeOff, User, Mail, Phone, Gift } from 'lucide-react';
+import { signUpWithEmail, checkIfAlreadyReferred } from '@/lib/auth';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ export default function Signup() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const refCode = searchParams.get(&apos;ref&apos;);
+    const refCode = searchParams.get('ref');
     if (refCode) {
       setParrainCode(refCode);
       // Optionnel : fetch infos parrain ici si besoin
@@ -36,13 +36,13 @@ export default function Signup() {
     setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError(&apos;Les mots de passe ne correspondent pas&apos;);
+      setError('Les mots de passe ne correspondent pas');
       setLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
-      setError(&apos;Le mot de passe doit contenir au moins 6 caractères&apos;);
+      setError('Le mot de passe doit contenir au moins 6 caractères');
       setLoading(false);
       return;
     }
@@ -50,7 +50,7 @@ export default function Signup() {
     try {
       const alreadyReferred = await checkIfAlreadyReferred(formData.email, formData.telephone);
       if (alreadyReferred) {
-        setError(&apos;Ce numéro ou email a déjà été parrainé&apos;);
+        setError('Ce numéro ou email a déjà été parrainé');
         setLoading(false);
         return;
       }
@@ -64,12 +64,12 @@ export default function Signup() {
       });
 
       if (user) {
-        router.push('/dashboard&apos;);
+        router.push('/dashboard');
       } else {
-        setError(&apos;Erreur inconnue lors de l&apos;inscription&apos;);
+        setError('Erreur inconnue lors de l'inscription');
       }
     } catch (err: any) {
-      setError(err.message || &apos;Erreur inattendue&apos;);
+      setError(err.message || 'Erreur inattendue');
     } finally {
       setLoading(false);
     }
@@ -96,7 +96,7 @@ export default function Signup() {
             className="inline-flex items-center space-x-2 text-neutral-600 hover:text-primary mb-6"
           >
             <ArrowLeft size={20} />
-            <span>Retour à l&apos;accueil</span>
+            <span>Retour à l'accueil</span>
           </Link>
 
           <h1 className="text-3xl font-heading font-bold text-neutral-800 mb-2">
@@ -115,7 +115,7 @@ export default function Signup() {
               <Gift className="text-primary" size={24} />
               <div>
                 <p className="font-medium text-primary">Code de parrainage détecté</p>
-                <p className="text-sm text-neutral-600">Vous bénéficierez d&apos;avantages exclusifs !</p>
+                <p className="text-sm text-neutral-600">Vous bénéficierez d'avantages exclusifs !</p>
               </div>
             </div>
           </motion.div>
@@ -185,7 +185,7 @@ export default function Signup() {
               <label className="block text-sm font-medium text-neutral-700 mb-2">Mot de passe</label>
               <div className="relative">
                 <input
-                  type={showPassword ? &apos;text&apos; : &apos;password&apos;}
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
@@ -197,7 +197,7 @@ export default function Signup() {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500"
-                  aria-label={showPassword ? &apos;Masquer le mot de passe&apos; : &apos;Afficher le mot de passe&apos;}
+                  aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -218,7 +218,7 @@ export default function Signup() {
             </div>
 
             <button type="submit" disabled={loading} className="w-full btn-primary disabled:opacity-50">
-              {loading ? &apos;Création du compte...' : &apos;Créer mon compte&apos;}
+              {loading ? 'Création du compte...' : 'Créer mon compte'}
             </button>
           </form>
 

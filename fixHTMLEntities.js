@@ -17,7 +17,7 @@ function walk(dir, callback) {
 
 function fixEntities(file) {
   let content = fs.readFileSync(file, "utf8");
-  const newContent = content.replace(/&apos;/g, "'");
+  const newContent = content.replace(/'/g, "'");
   if (newContent !== content) {
     fs.writeFileSync(file, newContent, "utf8");
     console.log(`✅ Fixed HTML entities in ${file}`);
