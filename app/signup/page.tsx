@@ -19,8 +19,6 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [parrainCode, setParrainCode] = useState('');
-  const [parrainInfo, setParrainInfo] = useState<any>(null);
-
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -28,7 +26,7 @@ export default function Signup() {
     const refCode = searchParams.get('ref');
     if (refCode) {
       setParrainCode(refCode);
-      // Tu peux afficher des infos sur le parrain ici si tu veux plus tard
+      // Eventuellement, fetch infos parrain ici si tu veux afficher quelque chose
     }
   }, [searchParams]);
 
@@ -49,28 +47,38 @@ export default function Signup() {
       return;
     }
 
-    const alreadyReferred = await checkIfAlreadyReferred(formData.email, formData.telephone);
-    if (alreadyReferred) {
-      setError('Ce numéro ou email a déjà été parrainé');
+    try {
+      const alreadyReferred = await checkIfAlreadyReferred(formData.email, formData.telephone);
+      if (alreadyReferred) {
+        setError('Ce numéro ou email a déjà été parrainé');
+        setLoading(false);
+        return;
+      }
+
+      const { user, session, error: signUpError } = await signUpWithEmail({
+        email: formData.email,
+        password: formData.password,
+        nom: formData.nom,
+        telephone: formData.telephone,
+        parrainCode: parrainCode || undefined,
+      });
+
+      if (signUpError) {
+        setError(signUpError.message || 'Une erreur est survenue lors de l’inscription');
+        setLoading(false);
+        return;
+      }
+
+      if (user) {
+        router.push('/dashboard');
+      } else {
+        setError('Erreur inconnue lors de l’inscription');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erreur inattendue');
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const { user, session, error: signUpError } = await signUpWithEmail(
-      formData.email,
-      formData.password,
-      formData.nom,
-      formData.telephone,
-      parrainCode
-    );
-
-    if (signUpError) {
-      setError(signUpError.message || 'Une erreur est survenue lors de l’inscription');
-    } else {
-      router.push('/dashboard');
-    }
-
-    setLoading(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
