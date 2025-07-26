@@ -26,7 +26,7 @@ export default function Signup() {
     const refCode = searchParams.get('ref');
     if (refCode) {
       setParrainCode(refCode);
-      // Eventuellement, fetch infos parrain ici si tu veux afficher quelque chose
+      // Optionnel : fetch infos parrain ici si besoin
     }
   }, [searchParams]);
 
@@ -55,19 +55,13 @@ export default function Signup() {
         return;
       }
 
-      const { user, session, error: signUpError } = await signUpWithEmail({
+      const { user } = await signUpWithEmail({
         email: formData.email,
         password: formData.password,
         nom: formData.nom,
         telephone: formData.telephone,
         parrainCode: parrainCode || undefined,
       });
-
-      if (signUpError) {
-        setError(signUpError.message || 'Une erreur est survenue lors de l’inscription');
-        setLoading(false);
-        return;
-      }
 
       if (user) {
         router.push('/dashboard');
@@ -84,7 +78,7 @@ export default function Signup() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -108,9 +102,7 @@ export default function Signup() {
           <h1 className="text-3xl font-heading font-bold text-neutral-800 mb-2">
             Rejoindre <span className="text-gradient">Aumarché</span>
           </h1>
-          <p className="text-neutral-600">
-            Créez votre compte et découvrez nos produits frais
-          </p>
+          <p className="text-neutral-600">Créez votre compte et découvrez nos produits frais</p>
         </div>
 
         {parrainCode && (
@@ -123,9 +115,7 @@ export default function Signup() {
               <Gift className="text-primary" size={24} />
               <div>
                 <p className="font-medium text-primary">Code de parrainage détecté</p>
-                <p className="text-sm text-neutral-600">
-                  Vous bénéficierez d'avantages exclusifs !
-                </p>
+                <p className="text-sm text-neutral-600">Vous bénéficierez d'avantages exclusifs !</p>
               </div>
             </div>
           </motion.div>
@@ -192,9 +182,7 @@ export default function Signup() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-2">
-                Mot de passe
-              </label>
+              <label className="block text-sm font-medium text-neutral-700 mb-2">Mot de passe</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -209,6 +197,7 @@ export default function Signup() {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500"
+                  aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -216,9 +205,7 @@ export default function Signup() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-2">
-                Confirmer le mot de passe
-              </label>
+              <label className="block text-sm font-medium text-neutral-700 mb-2">Confirmer le mot de passe</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -230,11 +217,7 @@ export default function Signup() {
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full btn-primary disabled:opacity-50"
-            >
+            <button type="submit" disabled={loading} className="w-full btn-primary disabled:opacity-50">
               {loading ? 'Création du compte...' : 'Créer mon compte'}
             </button>
           </form>
