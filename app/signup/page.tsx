@@ -66,7 +66,7 @@ export default function Signup() {
       if (user) {
         router.push('/dashboard');
       } else {
-        setError('Erreur inconnue lors de l'inscription');
+        setError("Erreur inconnue lors de l'inscription");
       }
     } catch (err: any) {
       setError(err.message || 'Erreur inattendue');
