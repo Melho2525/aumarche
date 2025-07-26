@@ -1,8 +1,8 @@
-'use client';
+&apos;use client&apos;;
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from &apos;react&apos;;
+import { motion } from &apos;framer-motion&apos;;
+import { useRouter } from &apos;next/navigation&apos;;
 import { 
   Users, 
   ShoppingCart, 
@@ -10,11 +10,11 @@ import {
   Activity,
   Calendar,
   DollarSign
-} from 'lucide-react';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
-import { supabase } from '@/lib/supabase';
-import { getCurrentUser, isAdmin } from '@/lib/auth';
+} from &apos;lucide-react&apos;;
+import Header from '@/components/layout/header&apos;;
+import Footer from '@/components/layout/footer&apos;;
+import { supabase } from '@/lib/supabase&apos;;
+import { getCurrentUser, isAdmin } from '@/lib/auth&apos;;
 
 export default function Admin() {
   const [stats, setStats] = useState({
@@ -38,19 +38,19 @@ export default function Admin() {
     try {
       const user = await getCurrentUser();
       if (!user) {
-        router.push('/login');
+        router.push('/login&apos;);
         return;
       }
 
 const adminCheck = await isAdmin(); // ✅
       if (!adminCheck) {
-        router.push('/dashboard');
+        router.push('/dashboard&apos;);
         return;
       }
 
       await loadAdminData();
     } catch (error) {
-      console.error('Erreur admin:', error);
+      console.error(&apos;Erreur admin:', error);
       router.push('/');
     }
   };
@@ -59,29 +59,29 @@ const adminCheck = await isAdmin(); // ✅
     try {
       // Statistiques générales
       const { data: users } = await supabase
-        .from('users')
-        .select('id, created_at');
+        .from(&apos;users&apos;)
+        .select(&apos;id, created_at&apos;);
 
       const { data: parrainages } = await supabase
-        .from('parrainages')
-        .select('id');
+        .from(&apos;parrainages&apos;)
+        .select(&apos;id&apos;);
 
       const { data: commandes } = await supabase
-        .from('commandes')
-        .select('id, montant, created_at');
+        .from(&apos;commandes&apos;)
+        .select(&apos;id, montant, created_at&apos;);
 
       // Utilisateurs récents
       const { data: recentUsersData } = await supabase
-        .from('users')
-        .select('nom, email, created_at')
-        .order('created_at', { ascending: false })
+        .from(&apos;users&apos;)
+        .select(&apos;nom, email, created_at&apos;)
+        .order(&apos;created_at&apos;, { ascending: false })
         .limit(5);
 
       // Commandes récentes
       const { data: recentCommandesData } = await supabase
-        .from('commandes')
-        .select('id, montant, created_at, user:users(nom)')
-        .order('created_at', { ascending: false })
+        .from(&apos;commandes&apos;)
+        .select(&apos;id, montant, created_at, user:users(nom)')
+        .order(&apos;created_at&apos;, { ascending: false })
         .limit(5);
 
       const totalUsers = users?.length || 0;
@@ -109,7 +109,7 @@ const adminCheck = await isAdmin(); // ✅
       setRecentCommandes(recentCommandesData || []);
 
     } catch (error) {
-      console.error('Erreur lors du chargement des données admin:', error);
+      console.error(&apos;Erreur lors du chargement des données admin:', error);
     } finally {
       setLoading(false);
     }
@@ -146,7 +146,7 @@ const adminCheck = await isAdmin(); // ✅
               Tableau de bord Admin
             </h1>
             <p className="text-neutral-600">
-              Vue d'ensemble des statistiques de la plateforme Aumarché
+              Vue d&apos;ensemble des statistiques de la plateforme Aumarché
             </p>
           </motion.div>
 
@@ -210,7 +210,7 @@ const adminCheck = await isAdmin(); // ✅
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-neutral-600">Chiffre d'affaires</p>
+                  <p className="text-sm text-neutral-600">Chiffre d&apos;affaires</p>
                   <p className="text-4xl font-bold text-gradient">
                     {stats.chiffreAffaires.toLocaleString()} FCFA
                   </p>
@@ -269,7 +269,7 @@ const adminCheck = await isAdmin(); // ✅
                     <div>
                       <p className="font-medium">#{commande.id.slice(0, 8)}</p>
                       <p className="text-sm text-neutral-600">
-                        {commande.user?.nom || 'Client'}
+                        {commande.user?.nom || &apos;Client&apos;}
                       </p>
                     </div>
                     <div className="text-right">

@@ -1,12 +1,12 @@
-'use client';
+&apos;use client&apos;;
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, User, LogOut, ShoppingCart } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
-import { signOut } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
+import Link from &apos;next/link&apos;;
+import { useState, useEffect } from &apos;react&apos;;
+import { motion } from &apos;framer-motion&apos;;
+import { Menu, X, User, LogOut, ShoppingCart } from &apos;lucide-react&apos;;
+import { supabase } from '@/lib/supabase&apos;;
+import { signOut } from '@/lib/auth&apos;;
+import { useRouter } from &apos;next/navigation&apos;;
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,12 +14,12 @@ export default function Header() {
   const router = useRouter();
 
   useEffect(() => {
-    // Vérifier l'utilisateur actuel
+    // Vérifier l&apos;utilisateur actuel
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
     });
 
-    // Écouter les changements d'authentification
+    // Écouter les changements d&apos;authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
     });
@@ -90,7 +90,7 @@ export default function Header() {
                   Connexion
                 </Link>
                 <Link href="/signup" className="btn-primary">
-                  S'inscrire
+                  S&apos;inscrire
                 </Link>
               </div>
             )}
@@ -113,7 +113,7 @@ export default function Header() {
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: &apos;auto&apos; }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden py-4 border-t"
           >
@@ -145,7 +145,7 @@ export default function Header() {
                     Connexion
                   </Link>
                   <Link href="/signup" className="text-neutral-700 hover:text-primary">
-                    S'inscrire
+                    S&apos;inscrire
                   </Link>
                 </>
               )}

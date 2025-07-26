@@ -1,7 +1,7 @@
-'use client';
+&apos;use client&apos;;
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from &apos;react&apos;;
+import { useRouter, useSearchParams } from &apos;next/navigation&apos;;
 
 export default function VerifyOTP() {
   const router = useRouter();
@@ -15,8 +15,8 @@ export default function VerifyOTP() {
   const [canResend, setCanResend] = useState(false);
 
   useEffect(() => {
-    const sId = searchParams.get('sessionId') || '';
-    const ph = searchParams.get('phone') || '';
+    const sId = searchParams.get(&apos;sessionId&apos;) || '';
+    const ph = searchParams.get(&apos;phone&apos;) || '';
     setSessionId(sId);
     setPhone(ph);
 
@@ -40,17 +40,17 @@ export default function VerifyOTP() {
     setError('');
 
     try {
-      const res = await fetch('/api/auth/otp', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'verify', otp, sessionId }),
-        headers: { 'Content-Type': 'application/json' }
+      const res = await fetch('/api/auth/otp&apos;, {
+        method: &apos;POST&apos;,
+        body: JSON.stringify({ action: &apos;verify&apos;, otp, sessionId }),
+        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }
       });
       const json = await res.json();
 
-      if (!res.ok) throw new Error(json.error || 'Erreur vérification OTP');
+      if (!res.ok) throw new Error(json.error || &apos;Erreur vérification OTP&apos;);
 
       // Redirection sécurisée, par exemple vers dashboard
-      router.push('/dashboard');
+      router.push('/dashboard&apos;);
     } catch (err: any) {
       setError(err.message);
     }
@@ -66,13 +66,13 @@ export default function VerifyOTP() {
     setCanResend(false);
 
     try {
-      const res = await fetch('/api/auth/otp', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'send', phone }),
-        headers: { 'Content-Type': 'application/json' }
+      const res = await fetch('/api/auth/otp&apos;, {
+        method: &apos;POST&apos;,
+        body: JSON.stringify({ action: &apos;send&apos;, phone }),
+        headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Erreur renvoi OTP');
+      if (!res.ok) throw new Error(json.error || &apos;Erreur renvoi OTP&apos;);
       setSessionId(json.sessionId);
     } catch (err: any) {
       setError(err.message);
@@ -108,7 +108,7 @@ export default function VerifyOTP() {
           disabled={loading}
           className="w-full btn-primary disabled:opacity-50"
         >
-          {loading ? 'Vérification...' : 'Valider le code'}
+          {loading ? &apos;Vérification...' : &apos;Valider le code&apos;}
         </button>
       </form>
 

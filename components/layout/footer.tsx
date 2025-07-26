@@ -1,8 +1,8 @@
-'use client';
+&apos;use client&apos;;
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
+import Link from &apos;next/link&apos;;
+import { motion } from &apos;framer-motion&apos;;
+import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from &apos;lucide-react&apos;;
 
 export default function Footer() {
   return (
@@ -20,7 +20,7 @@ export default function Footer() {
               Aumarché
             </h3>
             <p className="text-neutral-400">
-              La plateforme de digitalisation des achats vivriers en Côte d'Ivoire. 
+              La plateforme de digitalisation des achats vivriers en Côte d&apos;Ivoire. 
               Commandez vos produits frais directement depuis chez vous.
             </p>
             <div className="flex space-x-4">
@@ -92,7 +92,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={18} className="text-primary" />
-                <span className="text-neutral-400">Abidjan, Côte d'Ivoire</span>
+                <span className="text-neutral-400">Abidjan, Côte d&apos;Ivoire</span>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-neutral-800 mt-8 pt-8 text-center">
           <p className="text-neutral-400">
-            © 2024 Aumarché. Tous droits réservés. Développé avec ❤️ en Côte d'Ivoire.
+            © 2024 Aumarché. Tous droits réservés. Développé avec ❤️ en Côte d&apos;Ivoire.
           </p>
         </div>
       </div>

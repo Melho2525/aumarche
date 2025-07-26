@@ -1,6 +1,6 @@
-'use client';
+&apos;use client&apos;;
 
-import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
+import * as CollapsiblePrimitive from '@radix-ui/react-collapsible&apos;;
 
 const Collapsible = CollapsiblePrimitive.Root;
 

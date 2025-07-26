@@ -1,9 +1,9 @@
-'use client';
+&apos;use client&apos;;
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { signOut } from '@/lib/auth';
-import Loading from '@/components/ui/loading';
+import { useEffect } from &apos;react&apos;;
+import { useRouter } from &apos;next/navigation&apos;;
+import { signOut } from '@/lib/auth&apos;;
+import Loading from '@/components/ui/loading&apos;;
 
 export default function Logout() {
   const router = useRouter();

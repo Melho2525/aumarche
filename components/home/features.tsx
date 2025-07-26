@@ -1,44 +1,44 @@
-'use client';
+&apos;use client&apos;;
 
-import { motion } from 'framer-motion';
-import { Truck, Shield, Clock, Users, Gift, Star } from 'lucide-react';
+import { motion } from &apos;framer-motion&apos;;
+import { Truck, Shield, Clock, Users, Gift, Star } from &apos;lucide-react&apos;;
 
 const features = [
   {
     icon: Truck,
-    title: 'Livraison Express',
-    description: 'Livraison gratuite en moins de 24h dans toute la région d\'Abidjan',
-    color: 'text-primary',
+    title: &apos;Livraison Express&apos;,
+    description: &apos;Livraison gratuite en moins de 24h dans toute la région d\&apos;Abidjan&apos;,
+    color: &apos;text-primary&apos;,
   },
   {
     icon: Shield,
-    title: 'Paiement Sécurisé',
-    description: 'Transactions 100% sécurisées avec Orange Money, MTN Money et Visa',
-    color: 'text-secondary',
+    title: &apos;Paiement Sécurisé&apos;,
+    description: &apos;Transactions 100% sécurisées avec Orange Money, MTN Money et Visa&apos;,
+    color: &apos;text-secondary&apos;,
   },
   {
     icon: Clock,
-    title: 'Service 24/7',
-    description: 'Notre équipe est disponible pour vous accompagner à tout moment',
-    color: 'text-primary',
+    title: &apos;Service 24/7',
+    description: &apos;Notre équipe est disponible pour vous accompagner à tout moment&apos;,
+    color: &apos;text-primary&apos;,
   },
   {
     icon: Users,
-    title: 'Programme de Parrainage',
-    description: 'Gagnez des récompenses en parrainant vos proches',
-    color: 'text-secondary',
+    title: &apos;Programme de Parrainage&apos;,
+    description: &apos;Gagnez des récompenses en parrainant vos proches&apos;,
+    color: &apos;text-secondary&apos;,
   },
   {
     icon: Gift,
-    title: 'Récompenses Exclusives',
-    description: 'Débloquez des avantages uniques selon votre niveau de parrainage',
-    color: 'text-primary',
+    title: &apos;Récompenses Exclusives&apos;,
+    description: &apos;Débloquez des avantages uniques selon votre niveau de parrainage&apos;,
+    color: &apos;text-primary&apos;,
   },
   {
     icon: Star,
-    title: 'Qualité Garantie',
-    description: 'Produits frais sélectionnés avec soin auprès de nos producteurs locaux',
-    color: 'text-secondary',
+    title: &apos;Qualité Garantie&apos;,
+    description: &apos;Produits frais sélectionnés avec soin auprès de nos producteurs locaux&apos;,
+    color: &apos;text-secondary&apos;,
   },
 ];
 

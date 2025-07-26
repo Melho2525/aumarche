@@ -1,11 +1,11 @@
-'use client';
+&apos;use client&apos;;
 
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
-import Hero from '@/components/home/hero';
-import Features from '@/components/home/features';
-import ParrainageCTA from '@/components/home/parrainage-cta';
-import { motion } from 'framer-motion';
+import Header from '@/components/layout/header&apos;;
+import Footer from '@/components/layout/footer&apos;;
+import Hero from '@/components/home/hero&apos;;
+import Features from '@/components/home/features&apos;;
+import ParrainageCTA from '@/components/home/parrainage-cta&apos;;
+import { motion } from &apos;framer-motion&apos;;
 
 export default function Home() {
   return (

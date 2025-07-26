@@ -1,29 +1,29 @@
-'use client';
+&apos;use client&apos;;
 
-import * as React from 'react';
-import * as TogglePrimitive from '@radix-ui/react-toggle';
-import { cva, type VariantProps } from 'class-variance-authority';
+import * as React from &apos;react&apos;;
+import * as TogglePrimitive from '@radix-ui/react-toggle&apos;;
+import { cva, type VariantProps } from &apos;class-variance-authority&apos;;
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils&apos;;
 
 const toggleVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground',
+  &apos;inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground&apos;,
   {
     variants: {
       variant: {
-        default: 'bg-transparent',
+        default: &apos;bg-transparent&apos;,
         outline:
-          'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
+          &apos;border border-input bg-transparent hover:bg-accent hover:text-accent-foreground&apos;,
       },
       size: {
-        default: 'h-10 px-3',
-        sm: 'h-9 px-2.5',
-        lg: 'h-11 px-5',
+        default: &apos;h-10 px-3',
+        sm: &apos;h-9 px-2.5',
+        lg: &apos;h-11 px-5',
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: &apos;default&apos;,
+      size: &apos;default&apos;,
     },
   }
 );

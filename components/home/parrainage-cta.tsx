@@ -1,8 +1,8 @@
-'use client';
+&apos;use client&apos;;
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Gift, Users, Star, TrendingUp } from 'lucide-react';
+import { motion } from &apos;framer-motion&apos;;
+import Link from &apos;next/link&apos;;
+import { Gift, Users, Star, TrendingUp } from &apos;lucide-react&apos;;
 
 const rewards = [
   { level: 1, filleuls: 3, bonus: '5%', icon: Gift },
