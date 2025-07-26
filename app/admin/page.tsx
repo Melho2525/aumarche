@@ -42,7 +42,7 @@ export default function Admin() {
         return;
       }
 
-      const adminCheck = await isAdmin(user.id);
+const adminCheck = await isAdmin(user.id);
       if (!adminCheck) {
         router.push('/dashboard');
         return;
