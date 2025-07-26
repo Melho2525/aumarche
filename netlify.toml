@@ -1,7 +1,20 @@
+# Configuration de base pour le build
 [build]
   command = "npm run build"
   publish = ".next"
-  functions = "netlify/functions"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Fix pour les fonctions utilisant WebSocket (Supabase Realtime)
+[functions]
+  node_bundler = "nft"
+  external_node_modules = ["bufferutil", "utf-8-validate"]
+
+# Redirections pour Next.js (routes dynamiques et API)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Paramètres pour les fonctions si tu as des API dans /pages/api ou /app/api
+[[edge_functions]]
+  path = "/api/*"
+  function = "handler"
