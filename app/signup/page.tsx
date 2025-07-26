@@ -56,7 +56,7 @@ export default function Signup() {
       return;
     }
 
-    const { data, error: signUpError } = await signUpWithEmail(
+    const { user, session, error: signUpError } = await signUpWithEmail(
       formData.email,
       formData.password,
       formData.nom,
